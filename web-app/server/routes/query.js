@@ -35,21 +35,21 @@ async function main() {
         const contract = network.getContract('EHR');
 
         let asset = {
-            address: 'Kavi Nagar Gwalior',
+            address: 'Kokila ben hospital',
             appointments: [],
             bills: ['123'],
-            doctors: ['rahul'],
+            doctors: ['prathamesh'],
             laboratories: [],
-            name: 'Rohini Hospital ',
+            name: 'kokilaben Hospital ',
             patients: [],
             pharmacies: [],
-            phone: '9644143960',
+            phone: '91 9868654376',
             registrationId: '964414396011',
             type: 'Hospital',
-            userName: 'rahulparihar',
+            userName: 'prathamesh',
             sessionKey: 'c65d75db153800516e3622fcd02c0b56e754cbf2a311e1ffcfa6f17ae29b15d6',
-            password: 'Rahul@123',
-            id: 'rahulparihar'
+            password: 'Prath@123',
+            id: 'Prathamesh'
         };
         let a = '10';
         let b = '20';
@@ -64,29 +64,11 @@ async function main() {
         console.log(documentArray);
         let response = ["Incorrect"];
         response = await contract.evaluateTransaction('getModifiedAsset', JSON.stringify(asset));
-        // var patient = 'Patient';
-        // console.log(typeof patient);
-        // let requestType = 'pariharrahul2002';
-        // if (requestType === 'pariharrahul2002') {
-        //     let queryString = {
-        //         "selector": {
-        //             "userName": requestType
-        //         }
-        //     };
-        //
-        //     response = await contract.evaluateTransaction('queryWithQueryString', JSON.stringify(queryString));
-        //     response = JSON.parse(response.toString());
-        //     console.log(response);
-        // }
+
         console.log(JSON.parse(response.toString()));
         gateway.disconnect();
         //
-        // let sessionKey = await handler.generateSessionKey(asset.id);
-        // console.log(sessionKey);
-        // response = await handler.verifySessionKey(asset.id, sessionKey);
-        // console.log(response);
-        // await handler.removeSessionKey(asset.id, sessionKey);
-
+    
 
     } catch (error) {
         console.error(`Failed to fetch data ${error}`);

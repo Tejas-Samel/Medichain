@@ -1,10 +1,9 @@
 'use strict';
 
-const url = 'mongodb://127.0.0.1:27017';
-
 async function updateDocumentIntoDatabase(userName, documentType, documentId,document_path) {
     try {
         const mongo = require('mongodb').MongoClient;
+        const url = 'mongodb://127.0.0.1:27017';
         let client;
         let userSchema = {
             userName: userName,
@@ -48,7 +47,7 @@ async function removeDocumentFromDatabase(userName, documentType, documentId) {
     }
 }
 
-async function verifyFileExistenceAndHash(documentId, hashValue, documentType, collectionName) {
+async function verifyFileExistenceAndHash(documentId, documentType, collectionName) {
     try {
         const mongoose = require('mongoose');
         let Grid = require('gridfs-stream');
@@ -63,11 +62,12 @@ async function verifyFileExistenceAndHash(documentId, hashValue, documentType, c
         });
         let documentSchema = {
             filename: documentId,
-            md5: hashValue,
+            collectionName:collectionName,
             metadata: {
                 documentType: documentType
             }
         };
+        console.log('Inside accessdoc')
         console.log(documentSchema);
         let file = await gfs.files.findOne(documentSchema);
         conn.close();
@@ -86,10 +86,12 @@ async function getFileDetailsAndDocumentId(userName, publicId, documentType) {
         let client;
         let userSchema = {
             userName: userName,
-            documentType: documentType,
             publicId: publicId,
         };
-        console.log(userSchema);
+        // console.log('-------------US---------------------');
+        // console.log(userSchema);
+        // console.log('----------------------------------');
+
         client = await mongo.connect(url);
         let result = await client.db('EHR').collection(String(userName)).findOne(userSchema);
         console.log('-----------result-----------');

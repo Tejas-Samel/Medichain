@@ -508,7 +508,7 @@ COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
 COMPOSE_FILE_CA=docker-compose-ca.yaml
 #
 # use golang as the default language for chaincode
-LANGUAGE=golang
+LANGUAGE=javascript
 # default image tag
 IMAGETAG="latest"
 # default consensus type

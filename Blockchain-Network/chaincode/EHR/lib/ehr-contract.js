@@ -95,7 +95,7 @@ class EhrContract extends Contract {
         //create an appointment
         let appointment = {};
         appointment.hospitalId = 'registrationId';
-        appointment.patientId = 'samelTejas2001';
+        appointment.patientId = 'DUMMY_NAME';
         appointment.description = 'description';
         appointment.time = 'time';
         appointment.appointmentId = 'appointmentId';

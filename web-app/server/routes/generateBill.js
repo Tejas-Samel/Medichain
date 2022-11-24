@@ -6,45 +6,17 @@ const path = require('path');
 var handler = require('./sessionKeyHandler');
 const ccpPath = path.resolve(__dirname, '..', '..', '..', 'Blockchain-Network', 'first-network', 'connection-org1.json');
 
-const crypto = require('crypto');
+
 const mongoose = require('mongoose');
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-let Grid = require('gridfs-stream');
+var upload = require('./uploadFile');
+
+
 const mongoURI = `mongodb://127.0.0.1:27017/EHR`;
 const conn = mongoose.createConnection(mongoURI);
-let gfs;
 let databaseHandler = require("./accessDocumentDatabase");
 
-conn.once('open', () => {
-    // Init stream
-    gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection('BillCollection');
-});
 
-const storage = new GridFsStorage({
-    url: mongoURI,
-    file: (req, file) => {
-        return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
-                if (err) {
-                    return reject(err);
-                }
-
-                const filename = file.originalname;
-                const fileInfo = {
-                    filename: filename,
-                    bucketName: 'BillCollection',
-                    metadata: {documentType: 'Bill'},
-                };
-                resolve(fileInfo);
-            });
-        });
-    }
-});
-const BillCollection = multer({storage});
-
-router.post('/', BillCollection.single('file'), async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
 
     try {
         let publicId = "";

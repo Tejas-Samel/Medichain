@@ -6,80 +6,28 @@ const path = require('path');
 var handler = require('./sessionKeyHandler');
 const ccpPath = path.resolve(__dirname, '..', '..', '..', 'Blockchain-Network', 'first-network', 'connection-org1.json');
 
-const crypto = require('crypto');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-let Grid = require('gridfs-stream');
+var upload = require('./uploadFile');
+
 const mongoURI = `mongodb://127.0.0.1:27017/EHR`;
 const conn = mongoose.createConnection(mongoURI);
-let gfs;
+
 let databaseHandler = require("./accessDocumentDatabase");
 
-// conn.once('open', () => {
-//     // Init stream
-//     gfs = Grid(conn.db, mongoose.mongo);
-//     gfs.collection('EHRCollection');
-// });
 
-// const storage = new GridFsStorage({
-//     url: mongoURI,
-//     file: (req, file) => {
-//         return new Promise((resolve, reject) => {
-//             crypto.randomBytes(16, (err, buf) => {
-//                 if (err) {
-//                     return reject(err);
-//                 }
 
-//                 const filename = file.originalname;
-//                 const fileInfo = {
-//                     filename: filename,
-//                     bucketName: 'EHRCollection',
-//                     metadata: {documentType: 'EHR'},
-//                 };
-//                 resolve(fileInfo);
-//             });
-//         });
-//     }
-// });
-var storage =   multer.diskStorage({  
-    destination: function (req, file, callback) {  
-      callback(null, './uploads');  
-    },  
-    filename: function (req, file, callback) {  
-      callback(null, file.originalname);  
-    }  
-  });  
-var upload = multer({ storage : storage}).single('myfile');  
-    
-const EHRCollection = multer({storage});
-
-router.post('/', EHRCollection.single('file'), async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
     console.log('******************request body****************');
     
     try {
         let publicId = "";
-        // console.log(req.body);
-        // console.log(req.body.patientId);
-
-
-        // upload(req,res,function(err) {  
-        //     if(err) {  
-        //         return res.end("Error uploading file.");  
-        //     }
-              
-        //     res.end("File is uploaded successfully!");  
-        // });
-        // console.log(req.file.path);
+        
         console.log('*******Request body end************');
 
         if (req.file.filename) {
             publicId = await databaseHandler.updateDocumentIntoDatabase(req.body.patientId, "EHR", req.file.filename,req.file.path);
-            // console.log('************public****');
-            // console.log(req.file.path);
-            // console.log(publicId);
-            // console.log('*********id************');
-
+            
             req.body.ehrId = publicId;
             req.body.record = req.file.md5;
 

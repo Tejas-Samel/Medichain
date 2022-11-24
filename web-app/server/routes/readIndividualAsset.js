@@ -176,7 +176,7 @@ router.post('/', async (req, res) => {
                             console.log(collectionName + " " + documentType + " " + documentId);
                             let documentStorageId = await databaseHandler.getFileDetailsAndDocumentId(response.patientId, documentId, documentType);
                             console.log(documentStorageId);
-                            let isCorrect = await databaseHandler.verifyFileExistenceAndHash(documentStorageId, response.record, documentType, collectionName);
+                            let isCorrect = await databaseHandler.verifyFileExistenceAndHash(documentStorageId, documentType, collectionName);
                             console.log(isCorrect);
                             if (documentStorageId && isCorrect) {
                                 delete response.record;

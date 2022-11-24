@@ -44,28 +44,31 @@ router.post('/', async (req, res) => {
 
              */
             let documentArray = req.body.ehrs || req.body.bills || req.body.medicineReceipts || req.body.labRecords;
+            console.log(documentArray);
+
             let documentsDetails = [];
             for (let i = 0; i < documentArray.length; i++) {
                 // Submit the specified transaction.
                 req.body.assetId = documentArray[i];
                 let response = await contract.submitTransaction('readPatientAssets', JSON.stringify(req.body));
                 response = JSON.parse(response.toString());
-                console.log('---------response--------');
-                console.log(response);
+                // console.log('---------response--------');
+                // console.log(response);
                 if (response.record || response.ehrId) {
                     let collectionName = response.type + 'Collection';
                     let documentType = response.type;
                     let documentId = response.ehrId || response.labRecordId || response.medicineReceiptId || response.billId;
-                    console.log(collectionName + " " + documentType + " " + documentId);
+                    // console.log(collectionName + " " + documentType + " " + documentId);
                     let documentStorageId = await databaseHandler.getFileDetailsAndDocumentId(response.patientId, documentId, documentType);
-                    console.log('******storageid****');
-                    console.log(documentStorageId);
-                    console.log(process.cwd());
-                    let isCorrect = await databaseHandler.verifyFileExistenceAndHash(documentStorageId, response.record, documentType, collectionName);
-                    console.log(isCorrect);
+                    // console.log('******storageid****');
+                    // console.log(documentStorageId);
+                    // console.log(process.cwd());
+                    let isCorrect = await databaseHandler.verifyFileExistenceAndHash(documentStorageId, documentType, collectionName);
+                    // console.log(isCorrect);
                     if (documentStorageId) {
                         delete response.record;
                         documentsDetails.push(response);
+                        console.log(documentsDetails)
                         console.log("here");
                     }
                 }
