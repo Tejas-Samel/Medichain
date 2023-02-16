@@ -43,10 +43,10 @@ class EhrContract extends Contract {
         patient1.lastName = 'last1';
         patient1.address = 'address1';
         patient1.aadhaar = '1234';
-        patient1.DOB = '06/11/2001';
+        patient1.DOB = '01/01/2001';
         patient1.gender = 'Male';
         patient1.bloodGroup = 'B+';
-        patient1.userName = 'TejasSamel';
+        patient1.userName = 'dummyname';
         patient1.password = '12345';
         patient1.phone = '12345';
 

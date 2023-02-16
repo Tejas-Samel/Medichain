@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/HomeFiles/Home";
+import Landingpage from './components/Homenewfiles/Home/Landingpage';
+
+// import Landpage from "./components/Homefilesnew/src/Landpage";
 import patientLogin from "./components/patient/patientLogin";
 import registerPatient from "./components/patient/registerPatient";
 import MediChain from "./components/mediChain/mediChain";
@@ -28,9 +30,9 @@ import insuranceDashboard from "./components/insurance/insuranceDashboard/insura
 class App extends Component {
   render() {
     return (
-      <div>
+      <div >
         <Router>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={Landingpage} />
           <Route path="/mediChain" exact component={MediChain} />
           <Route path="/patientLogin" exact component={patientLogin} />
           <Route path="/registerPatient" exact component={registerPatient} />

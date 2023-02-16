@@ -27,7 +27,7 @@ function SimpleDialog(props) {
     };
     return (
         <Dialog onClose={handleClose} scroll={"body"} aria-labelledby="simple-dialog-title" open={open}>
-            <img src={imageURL} alt="rahul parihar"
+            <img src={imageURL} alt=""
                  width="100%" height="60%"/>
         </Dialog>
     );
@@ -56,8 +56,13 @@ export default function ViewMedicineRecipts(props) {
                     listType: 'medicineReceipts',
                     medicineReceipts: updatedData.medicineReceipts
                 };
+                
                 let response = await axios.post(ADDRESS + `readPatientDocuments`, patientSchema);
+                console.log(response)
+
                 response = response.data;
+                console.log("----Medicine Receipt----")
+                console.log(response)
                 if (response.length) {
                     setMedicineReceiptsDetail(response);
                 }

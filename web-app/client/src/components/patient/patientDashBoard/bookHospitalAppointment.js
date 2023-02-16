@@ -140,74 +140,86 @@ export default function BookHospitalAppointment(props) {
     <React.Fragment>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div style={paper}>
-          <Avatar style={avatar}>
-            <PostAddIcon />
-          </Avatar>
-          <Title>Book Appointment</Title>
-          <form style={form} onSubmit={submitAppointment}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  select
-                  id="select"
-                  label="Hospital"
-                  name="hospitalId"
-                  autoComplete="hospital"
-                  classes={{ root: classes.root }}
-                  defaultValue={appointment.hospitalId || ""}
-                  onChange={handleChange}
-                >
-                  {createMenuItems()}
-                </TextField>
+        <div
+          style={{
+            borderRadius: "15px",
+            border: "3px solid",
+            borderColor: "#eeeeee",
+            padding:"45px",
+          }}
+        >
+          <div style={paper}>
+            <Avatar style={avatar}>
+              <PostAddIcon />
+            </Avatar>
+            <Title>Book Appointment</Title>
+            <form style={form} onSubmit={submitAppointment}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="standard"
+                    required
+                    fullWidth
+                    select
+                    id="select"
+                    label="Hospital"
+                    name="hospitalId"
+                    autoComplete="hospital"
+                    classes={{ root: classes.root }}
+                    defaultValue={appointment.hospitalId || ""}
+                    onChange={handleChange}
+                  >
+                    {createMenuItems()}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="standard"
+                    required
+                    fullWidth
+                    id="time"
+                    name="time"
+                    label="Appointment Time"
+                    type="datetime-local"
+                    defaultValue={appointment.time}
+                    onChange={handleChange}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} style={{ height: 240 }}>
+                  <TextField
+                    // minRows={5}
+                    multiline={true}
+                    autoComplete="Description"
+                    name="description"
+                    variant="standard"
+                    required
+                    fullWidth
+                    id="description"
+                    label="Describe the Ailment "
+                    // autoFocus={true}
+                    onChange={handleChange}
+                    defaultValue={appointment.description}
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    style={submit}
+                  >
+                    Book Appointment
+                  </Button>
+                  
+                </Grid>
+                
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="time"
-                  name="time"
-                  label="Appointment Time"
-                  type="datetime-local"
-                  defaultValue={appointment.time}
-                  onChange={handleChange}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} style={{ height: 240 }}>
-                <TextField
-                  rows={10}
-                  multiline={true}
-                  autoComplete="Description"
-                  name="description"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="description"
-                  label="Describe the Ailment"
-                  autoFocus={true}
-                  onChange={handleChange}
-                  defaultValue={appointment.description}
-                />
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={submit}
-              >
-                BookAppointment
-              </Button>
-            </Grid>
-          </form>
+            </form>
         </div>
+        </div>
+
       </Container>
       <SpinnerDialog open={loaded} />
     </React.Fragment>

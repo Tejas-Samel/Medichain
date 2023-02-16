@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -18,9 +18,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import PersonIcon from '@material-ui/icons/Person';
 import PatientPersonalInfo from './patientPersonalInfo';
 import ExitToApp from "@material-ui/icons/ExitToApp";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
-import {ADDRESS} from "../../genericFiles/constants";
+import { ADDRESS,HEADER_MOBILE,HEADER_DESKTOP } from "../../genericFiles/constants";
 import copyright from '../../genericFiles/copyright';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -31,7 +31,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import ListSubheader from "@material-ui/core/ListSubheader";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
-import {AddIcCallSharp} from "@material-ui/icons";
+import { AddIcCallSharp } from "@material-ui/icons";
 import BookHospitalAppointment from "./bookHospitalAppointment";
 import ManageFileAccess from "./manageFileAccess";
 import ViewEHRs from "./viewEHRs";
@@ -41,19 +41,27 @@ import ViewMedicineRecipts from "./viewMedicineReceipts";
 import ViewBills from "./viewBills";
 import InsuranceClaim from "./insuranceClaim";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 const useStyles = makeStyles((theme) => ({
     root: {
+        backgroundColor: "#eeeeee",
         display: 'flex',
     },
     toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
+        backgroundColor:"#006597",
+        backdropFilter: "blur(10px)",
+        minHeight: HEADER_MOBILE,
+        [theme.breakpoints.up('lg')]: {
+            minHeight: HEADER_DESKTOP,
+            // padding: theme.spacing(0, 8),
+        }, // keep right padding when drawer closed
     },
     toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: '0 8px',
+        paddingTop: HEADER_DESKTOP/4,
         ...theme.mixins.toolbar,
     },
     appBar: {
@@ -79,11 +87,13 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        
     },
     drawerPaper: {
         position: 'relative',
         whiteSpace: 'nowrap',
         width: drawerWidth,
+
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -163,7 +173,8 @@ export default function PatientDashBoard() {
         const fetchPatientData = async () => {
             setLoaded(true);
             try {
-                let patientCredentials = JSON.parse(localStorage.getItem('patientToken'));
+                let patientCredentials ="";
+                patientCredentials = JSON.parse(localStorage.getItem('patientToken'));
                 if (!patientCredentials) {
                     setLogOut(true);
                 } else {
@@ -174,6 +185,7 @@ export default function PatientDashBoard() {
                         response = response.data;
                         response = JSON.parse(response);
                         response.sessionKey = patientCredentials.sessionKey;
+                        console.log("___________RESPONSE_________")
                         console.log(response);
                         setPatientData(response || {});
                     }
@@ -185,7 +197,8 @@ export default function PatientDashBoard() {
         };
         fetchPatientData();
     }, []);
-    console.log(patientData);
+    // console.log("-----------------patientDATA--------------------")
+    // console.log(patientData);
 
     const handleLogOut = async () => {
         console.log("herer");
@@ -316,57 +329,57 @@ export default function PatientDashBoard() {
         }
     };
 
-    console.log(patientInfoDisplay);
+    // console.log(patientInfoDisplay);
     if (patientInfoDisplay) {
-        console.log("here");
+        // console.log("here");
         var patientInfo = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <PatientPersonalInfo data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <PatientPersonalInfo data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (bookAppointmentDisplay) {
         var bookAppointment = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <BookHospitalAppointment data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <BookHospitalAppointment data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (requesterDisplay) {
         var fileAccess = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <ManageFileAccess data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <ManageFileAccess data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (insuranceClaimDisplay) {
         var insuranceClaim = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <InsuranceClaim data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <InsuranceClaim data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (viewEHRsDisplay) {
         var viewEHRs = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <ViewEHRs data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <ViewEHRs data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (viewLabRecordsDisplay) {
         console.log("Lab Records");
         var viewLabRecords = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <ViewLabRecords data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <ViewLabRecords data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (viewMedicineReceiptsDisplay) {
         console.log("Medicine Reciepts");
         var viewMedicineReceipts = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <ViewMedicineRecipts data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <ViewMedicineRecipts data={JSON.stringify(patientData)} />
             </Paper>
         );
     } else if (viewBillsDisplay) {
         console.log("Bills");
         var viewBills = (
-            <Paper className={fixedHeightPaper} style={{height: '360'}}>
-                <ViewBills data={JSON.stringify(patientData)}/>
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                <ViewBills data={JSON.stringify(patientData)} />
             </Paper>
         );
     }
@@ -374,34 +387,34 @@ export default function PatientDashBoard() {
     const mainListItems = (
         <div>
             <ListItem button onClick={visibilityHandlerPatientInfo}>
-                <ListItemIcon>
-                    <DashboardIcon/>
+                <ListItemIcon >
+                    <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="PatientDashBoard"/>
+                <ListItemText primary="Patient Dashboard" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerBookAppointment}>
                 <ListItemIcon>
-                    <AddIcCallSharp/>
+                    <AddIcCallSharp />
                 </ListItemIcon>
-                <ListItemText primary="Book Appointment"/>
+                <ListItemText primary="Book Appointment" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerRequesters}>
                 <ListItemIcon>
-                    <PeopleIcon/>
+                    <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Requesters"/>
+                <ListItemText primary="Requesters" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
-                    <ContactPhoneIcon/>
+                    <ContactPhoneIcon />
                 </ListItemIcon>
-                <ListItemText primary="Emergency Contacts"/>
+                <ListItemText primary="Emergency Contacts" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerInsuranceClaim}>
                 <ListItemIcon>
-                    <MonetizationOnIcon/>
+                    <MonetizationOnIcon />
                 </ListItemIcon>
-                <ListItemText primary="Insurance Claim"/>
+                <ListItemText primary="Insurance Claim" />
             </ListItem>
         </div>
     );
@@ -410,27 +423,27 @@ export default function PatientDashBoard() {
             <ListSubheader inset>Saved Documents</ListSubheader>
             <ListItem button onClick={visibilityHandlerViewEHRs}>
                 <ListItemIcon>
-                    <AssignmentIcon/>
+                    <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="View EHRs"/>
+                <ListItemText primary="View EHRs" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerViewLabRecords}>
                 <ListItemIcon>
-                    <AssignmentIcon/>
+                    <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="View Lab Reports"/>
+                <ListItemText primary="View Lab Reports" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerViewMedicineReceipts}>
                 <ListItemIcon>
-                    <AssignmentIcon/>
+                    <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="View Medicine Receipt"/>
+                <ListItemText primary="View Medicine Receipt" />
             </ListItem>
             <ListItem button onClick={visibilityHandlerViewBills}>
                 <ListItemIcon>
-                    <AssignmentIcon/>
+                    <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="View Bills"/>
+                <ListItemText primary="View Bills" />
             </ListItem>
         </div>
     );
@@ -438,31 +451,30 @@ export default function PatientDashBoard() {
     if (logOut) {
         return <Redirect to={{
             pathname: '/',
-        }}/>;
+        }} />;
     }
 
     return (
         <div className={classes.root} id='mainDiv'>
-            <CssBaseline/>
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         edge="start"
                         color="inherit"
-                        aria-label="open drawer"
+                        
                         onClick={handleDrawerOpen}
                         className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         Patient Dashboard
                     </Typography>
                     <IconButton color="inherit" onClick={visibilityHandlerPatientInfo}>
-                        <PersonIcon/>
+                        <PersonIcon />
                     </IconButton>
                     <IconButton color="secondary" onClick={handleLogOut}>
-                        <ExitToApp/>
+                        <ExitToApp />
                     </IconButton>
                 </Toolbar>
             </AppBar>
@@ -473,55 +485,61 @@ export default function PatientDashBoard() {
                 }}
                 open={open}
             >
+                <div style={{height:HEADER_DESKTOP}}>
+
                 <div className={classes.toolbarIcon}>
                     <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon/>
+                        <ChevronLeftIcon />
                     </IconButton>
                 </div>
-                <Divider/>
+
+                </div>
+                <Divider />
+
+                
                 <List>{mainListItems}</List>
-                <Divider/>
+                <Divider />
                 <List>{secondaryListItems}</List>
             </Drawer>
 
             <main className={classes.content}>
-                <div className={classes.appBarSpacer}/>
+                <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
 
-                    <Grid container spacing={3} justify='center' alignContent='center'>
-                        {/* Recent HospitalPersonalInfo */}
-                        <Grid item xs={12} style={{display: 'none'}} id="patientInfo">
+                    <Grid container spacing={3} justifyContent='center' alignContent='center'>
+                        
+                        <Grid item xs={12} style={{ display: 'none' }} id="patientInfo">
                             {patientInfo}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="bookAppointment">
+                        <Grid item xs={12} style={{ display: 'none' }} id="bookAppointment">
                             {bookAppointment}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="fileAccess">
+                        <Grid item xs={12} style={{ display: 'none' }} id="fileAccess">
                             {fileAccess}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="insuranceClaim">
+                        <Grid item xs={12} style={{ display: 'none' }} id="insuranceClaim">
                             {insuranceClaim}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="viewEHRs">
+                        <Grid item xs={12} style={{ display: 'none' }} id="viewEHRs">
                             {viewEHRs}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="viewLabRecords">
+                        <Grid item xs={12} style={{ display: 'none' }} id="viewLabRecords">
                             {viewLabRecords}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="viewMedicineReceipts">
+                        <Grid item xs={12} style={{ display: 'none' }} id="viewMedicineReceipts">
                             {viewMedicineReceipts}
                         </Grid>
-                        <Grid item xs={12} style={{display: 'none'}} id="viewBills">
+                        <Grid item xs={12} style={{ display: 'none' }} id="viewBills">
                             {viewBills}
                         </Grid>
 
                     </Grid>
                     <Box pt={4}>
-                        <copyright.Copyright/>
+                        <copyright.Copyright />
                     </Box>
                 </Container>
             </main>
-            <SpinnerDialog open={loaded}/>
+            <SpinnerDialog open={loaded} />
         </div>
     );
 }

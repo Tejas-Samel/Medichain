@@ -40,6 +40,8 @@ import HospitalAssets from "./hospitalAssets";
 import GenerateBill from "./generateBill";
 import ViewBills from "./viewBill";
 
+import ViewEHRs from "../../patient/patientDashBoard/viewEHRs";
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -150,6 +152,8 @@ export default function HospitalDashBoard() {
     const [requestAccessDisplay, setRequestAccessDisplay] = React.useState(false);
     const [viewDocumentsDisplay, setViewDocumentsDisplay] = React.useState(false);
     const [viewBillsDisplay, setViewBillsDisplay] = React.useState(false);
+    const [viewEHRsDisplay, setViewEHRsDisplay] = React.useState(false);
+
 
     useEffect(() => {
         const fetchHospitalData = async () => {
@@ -295,6 +299,19 @@ export default function HospitalDashBoard() {
         }
     };
 
+    const visibilityHandlerViewEHRs = () => {
+        var x = document.getElementById("viewEHRs");
+        if (x) {
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                setViewEHRsDisplay(true);
+            } else {
+                x.style.display = "none";
+                setViewEHRsDisplay(false);
+            }
+        }
+    };
+
     console.log("DisplayChecker");
     if (hospitalInfoDisplay) {
         console.log("here");
@@ -316,7 +333,13 @@ export default function HospitalDashBoard() {
                 <GenerateBill data={JSON.stringify(hospitalData)}/>
             </Paper>
         );
-    } else if (checkAssetDisplay) {
+    } else if (viewEHRsDisplay) {
+        var viewEHRs = (
+            <Paper className={fixedHeightPaper} style={{ height: '360' }}>
+                {/* <ViewEHRs data={JSON.stringify(patientData)} /> */}
+            </Paper>
+        );}
+        else if (checkAssetDisplay) {
         console.log("alns");
         var checkAsset = (
             <Paper className={fixedHeightPaper} style={{height: '360'}}>
@@ -394,6 +417,12 @@ export default function HospitalDashBoard() {
                     <AssignmentIcon/>
                 </ListItemIcon>
                 <ListItemText primary="View Documents"/>
+            </ListItem>
+            <ListItem button onClick={visibilityHandlerViewEHRs}>
+                <ListItemIcon>
+                    <AssignmentIcon/>
+                </ListItemIcon>
+                <ListItemText primary="View EHRs"/>
             </ListItem>
         </div>
     );

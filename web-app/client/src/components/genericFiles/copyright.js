@@ -7,13 +7,13 @@ const copyright = {
     return (
       <Typography
         variant="body2"
-        color="textSecondary"
+        // color="textSecondary"
         align="center"
-        style={{ color: "#FFF" }}
+        style={{ color: "#424242" }}
       >
         <b>Copyright ©</b>
-        <b> </b>
-        <Link color="inherit" href="/mediChain" style={{ color: "#FFF" }}>
+        
+        <Link color="inherit" href="/mediChain" style={{ color: "#424242" }}>
           MediChain
         </Link>{" "}
         {new Date().getFullYear()}

@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { ADDRESS } from "../genericFiles/constants";
-import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -18,8 +12,10 @@ import { createTheme } from "@material-ui/core/styles";
 import copyright from "../genericFiles/copyright";
 import MenuItem from "@material-ui/core/MenuItem";
 import { validateForm } from "../genericFiles/validateForm";
-import PopUp from "../genericFiles/PopUp";
+import { Alert } from "react-bootstrap";
+
 import SpinnerDialog from "../genericFiles/SpinnerDialog";
+
 
 const theme = createTheme();
 
@@ -87,6 +83,7 @@ class registerPatient extends Component {
   };
   submitForm = async (event) => {
     event.preventDefault();
+    console.log(this.state);
     let errors = validateForm(this.state);
     console.log(!errors["userName"]);
     if (!errors["userName"]) {
@@ -132,7 +129,7 @@ class registerPatient extends Component {
           this.setState({
             alertShow: true,
             alertData: response,
-            alertHeading: "SigUp Error",
+            alertHeading: "SignUp Error",
           });
         }
       } catch (e) {
@@ -151,217 +148,165 @@ class registerPatient extends Component {
       console.log(this.state);
       return <Redirect to="/patientLogin" />;
     } else {
+      const ifalert = this.state.alertShow;
+
       return (
-        <Container component="main" maxWidth="xs">
-          <PopUp
-            alertData={this.state.alertData}
-            alertHeading={this.state.alertHeading}
-            alertShow={this.state.alertShow}
-            alertCloseFunc={() => this.setState({ alertShow: false })}
-          />
-          <CssBaseline />
-          <div style={paper}>
-            <Avatar style={avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Patient SignUp
-            </Typography>
-            <form style={form} noValidate onSubmit={this.submitForm}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    defaultValue={this.state.firstName}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.firstName}
-                    autoFocus={true}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="lname"
-                    defaultValue={this.state.lastName}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.lastName}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    select
-                    id="select"
-                    label="Gender"
-                    name="gender"
-                    autoComplete="gender"
-                    defaultValue={this.state.gender}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.gender}
-                  >
-                    <MenuItem value="Male">Male</MenuItem>
-                    <MenuItem value="Female">Female</MenuItem>
-                    <MenuItem value="Other">Other</MenuItem>
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="date"
-                    label="Date of Birth"
-                    type="date"
-                    name="DOB"
-                    defaultValue={this.state.DOB}
-                    onChange={this.handleChange}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    helperText={this.state.errors.DOB}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="phone"
-                    label="Phone No."
-                    name="phone"
-                    autoComplete="phone"
-                    defaultValue={this.state.phone}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.phone}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="bloodGroup"
-                    name="bloodGroup"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="bloodGroup"
-                    label="Blood Group"
-                    defaultValue={this.state.bloodGroup}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.bloodGroup}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="aadhaar"
-                    label="Aadhaar"
-                    name="aadhaar"
-                    autoComplete="45454545455"
-                    defaultValue={this.state.aadhaar}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.aadhaar}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="address"
-                    label="Address"
-                    name="address"
-                    autoComplete="India"
-                    defaultValue={this.state.address}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.address}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="userName"
-                    label="UserName"
-                    name="userName"
-                    autoComplete="userName"
-                    defaultValue={this.state.userName}
-                    onChange={this.handleChange}
-                    helperText={this.state.errors.userName}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    defaultValue={this.state.password}
-                    helperText={this.state.errors.password}
-                    onChange={this.handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        name="SMSUpdates"
-                        defaultValue={this.state.SMSUpdates}
-                        checked={this.state.SMSUpdates}
-                        onChange={this.handleCheckBox}
-                        color="primary"
-                      />
-                    }
-                    label="I want to receive information and updates via sms."
-                  />
-                </Grid>
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={submit}
-              >
-                Sign Up
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/" variant="body2">
-                    Home Page
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/patientLogin" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid>
-            </form>
+        <section className="h-80 bg-secondary">
+          <div className="container  h-100" >
+            <div className="row d-flex justify-content-center align-items-center h-80">
+              <div className="col">
+                <div className="card card-registration my-4" style={{borderRadius: "25px"}}>
+                  <div className="row g-0">
+                    <div className="col-xl-6 d-none d-xl-block">
+                      <img src="https://a0.anyrgb.com/pngimg/1092/522/rehabilitation-exercises-medical-rehabilitation-scene-subacute-rehabilitation-rehabilitation-patient-sad-boy-in-wheelchair-wheelchair-wheelchair-cerebral-palsy-cartoon-wheelchair-wheelchairs.png"
+                        alt="photo" className="img-fluid"
+                        style={{ borderRadius: "25px" }} />
+                    </div>
+                    <div className="col-xl-6" >
+                      <form noValidate onSubmit={this.submitForm}>
+                        <div className="card-body p-md-5 text-black">
+                          <h3 className="mb-5 text-uppercase">Patient registration form</h3>
+                          {/* ALL alerts and errors in the form */}
+                          {ifalert ? (<Alert variant="danger"> {this.state.alertHeading}  {this.state.alertData} </Alert>):(<></>)}
+                          {this.state.errors.firstName ? (<Alert variant="danger">{this.state.errors.firstName}</Alert>) : (<></>)}
+                          {this.state.errors.lastName ? (<Alert variant="danger">{this.state.errors.lastName}</Alert>) : (<></>)}
+                          {this.state.errors.phone ? (<Alert variant="danger">{this.state.errors.phone}</Alert>) : (<></>)}
+                          {this.state.errors.bloodGroup ? (<Alert variant="danger">{this.state.errors.bloodGroup}</Alert>) : (<></>)}
+                          {this.state.errors.address ? (<Alert variant="danger">{this.state.errors.address}</Alert>) : (<></>)}
+                          {this.state.errors.gender ? (<Alert variant="danger">{this.state.errors.gender}</Alert>) : (<></>)}
+                          {this.state.errors.aadhaar ? (<Alert variant="danger">{this.state.errors.aadhaar}</Alert>) : (<></>)}
+                          {this.state.errors.userName ? (<Alert variant="danger">{this.state.errors.userName}</Alert>) : (<></>)}
+                          {this.state.errors.password ? (<Alert variant="danger">{this.state.errors.password}</Alert>) : (<></>)}
+                          
+
+                          <div className="row">
+                            <div className="col-md-6 mb-4">
+                              <div className="form-outline">
+
+                                <label className="form-label" htmlFor="firstName">First name</label>
+
+                                <input required type="text" name="firstName" id="firstName" defaultValue={this.state.firstName}
+                                  onChange={this.handleChange} className="form-control " />
+                              </div>
+                            </div>
+                            <div className="col-md-6 mb-4">
+                              <div className="form-outline">
+                                <label className="form-label" htmlFor="lastName">Last name</label>
+
+                                <input  type="text" id="lastName" name="lastName" defaultValue={this.state.lastName}
+                                  onChange={this.handleChange} className="form-control" required="true"/>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row">
+                            <div className="col-md-6 mb-4">
+                              <div className="form-outline">
+                                <label className="form-label" htmlFor="phone">Contact No.</label>
+
+                                <input required type="text" id="phone" name="phone" defaultValue={this.state.phone} helperText={this.state.errors.phone}
+                                  onChange={this.handleChange} className="form-control " />
+                              </div>
+                            </div>
+                            <div className="col-md-6 mb-4">
+                              <div className="form-outline">
+                                <label className="form-label" htmlFor="bloodGroup">Blood Group</label>
+
+                                <input required type="text" name="bloodGroup" id="bloodGroup"
+                                  label="Blood Group" defaultValue={this.state.bloodGroup} helperText={this.state.errors.bloodGroup}
+                                  onChange={this.handleChange} className="form-control " />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="form-outline mb-4">
+                            <label className="form-label" htmlFor="address">Address</label>
+
+                            <input type="text" id="address" name="address" defaultValue={this.state.address} helperText={this.state.errors.address}
+                              onChange={this.handleChange} className="form-control " />
+                          </div>
+
+                          <div className="d-md-flex justify-content-start align-items-center  py-2">
+
+                            <div className="form-outline mb-4">
+                              <label className="form-label" htmlFor="DOB">Date of Birth</label>
+
+                              <input type="date" id="date" name="DOB"
+                                defaultValue={this.state.DOB}
+                                onChange={this.handleChange} className="form-control" />
+                            </div>
+                            <div className="form-outline m-4">
+                              <label className="form-label" htmlFor="gender">Gender</label>
+
+                              <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                select
+                                id="select"
+                                name="gender"
+                                autoComplete="gender"
+                                defaultValue={this.state.gender}
+                                onChange={this.handleChange}
+                                helperText={this.state.errors.gender}
+                              >
+                                <MenuItem value="Male">Male</MenuItem>
+                                <MenuItem value="Female">Female</MenuItem>
+                                <MenuItem value="Other">Other</MenuItem>
+                              </TextField>
+                            </div>
+                          </div>
+                          <div className="form-outline mb-4 ">
+                            <label className="form-label" fhtmlFor="Aadhaar">Aadhaar</label>
+
+                            <input type="text" id="aadhaar"
+                              label="Aadhaar"
+                              name="aadhaar" defaultValue={this.state.aadhaar} helperText={this.state.errors.aadhaar}
+                              onChange={this.handleChange} className="form-control   col-md-6" />
+                          </div>
+
+
+
+                          <div className="form-outline mb-4 col-md-6">
+                            <label className="form-label" fhtmlFor="userName">Username</label>
+
+                            <input type="text" id="userName"
+                              label="UserName"
+                              name="userName" defaultValue={this.state.userName} helperText={this.state.errors.userName}
+                              onChange={this.handleChange} className="form-control " />
+                          </div>
+
+                          <div className="form-outline mb-4 col-md-6">
+                            <label className="form-label" fhtmlFor="password">Password</label>
+
+                            <input type="password" defaultValue={this.state.password}
+                              label="Password" className="form-control "
+                              onChange={this.handleChange} name="password"
+                              id="password" helperText={this.state.errors.password}
+                            />
+                          </div>
+
+
+
+                          <div className="d-flex justify-content-end pt-3">
+                            {/* <button type="button" className="btn btn-light btn-lg">Reset all</button> */}
+                            <Button type="submit" variant="contained" color="primary" >Submit</Button>
+                          </div>
+
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Box mt={5}>
+              <copyright.Copyright />
+            </Box>
+            <SpinnerDialog open={this.state.loaded} />
           </div>
-          <Box mt={5}>
-            <copyright.Copyright />
-          </Box>
-          <SpinnerDialog open={this.state.loaded} />
-        </Container>
+        </section>
       );
     }
   }

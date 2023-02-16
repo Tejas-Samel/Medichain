@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         let response = await contract.submitTransaction('verifyPassword', JSON.stringify(req.body));
         response = JSON.parse(response.toString());
         console.log(response);
-
+        
         // Disconnect from the gateway.
         await gateway.disconnect();
 

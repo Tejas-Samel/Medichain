@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal, Alert, Button } from "react-bootstrap";
 import { createTheme } from "@material-ui/core/styles";
 
+
 const theme = createTheme();
 const modal = {
   display: "flex",
@@ -13,6 +14,7 @@ const modal = {
   top: "5%",
   left: "40%",
   width: "20%",
+  height:"40%",
   justifyContent: "center",
   alignContent: "center",
 };
@@ -63,18 +65,16 @@ class PopUp extends Component {
         <Modal
           show={this.state.alertShow}
           onHide={() => this.state.alertCloseFunc()}
-          style={modal}
         >
-          <Modal.Header style={modalHeader}>
-            <Modal.Title style={{ fontSize: "17px", textAlign: "center" }}>
+          <Modal.Header >
+            <Modal.Title >
               {this.state.alertHeading}
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body style={modalBody}>{this.state.alertData}</Modal.Body>
-          <Modal.Footer style={modalFooter}>
+          <Modal.Body >{this.state.alertData}</Modal.Body>
+          <Modal.Footer >
             <Button
               variant="secondary"
-              style={{ float: "right", color: "red" }}
               onClick={() => this.state.alertCloseFunc()}
             >
               Close

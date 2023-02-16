@@ -24,7 +24,7 @@ router.post('/', upload.single('file'), async (req, res) => {
         console.log(req.file);
 
         if (req.file.filename) {
-            publicId = await databaseHandler.updateDocumentIntoDatabase(req.body.patientId, "Bill", req.file.filename);
+            publicId = await databaseHandler.updateDocumentIntoDatabase(req.body.patientId, "Bill", req.file.filename,req.file.path);
             console.log(publicId);
             req.body.billId = publicId;
             req.body.record = req.file.md5;

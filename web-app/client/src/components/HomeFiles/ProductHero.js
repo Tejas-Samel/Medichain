@@ -12,6 +12,8 @@ const styles = (theme) => ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundColor: "#7fc7d9", // Average color of the background image.
     backgroundPosition: "center",
+
+
   },
   button: {
     minWidth: 200,
@@ -35,8 +37,11 @@ function ProductHero(props) {
     <ProductHeroLayout backgroundClassName={classes.background}>
       {/* Increase the network loading priority of the background image. */}
       <img
-        style={{ display: "none" }}
-        src={backgroundImage}
+        style={{
+          height: "100vh",
+          width: "",
+        }}
+        // src={backgroundImage}
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h3" marked="center">

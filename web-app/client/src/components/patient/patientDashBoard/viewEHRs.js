@@ -60,8 +60,6 @@ export default function ViewEHRs(props) {
                 let response = await axios.post(ADDRESS + `readPatientDocuments`, patientSchema);
                 response = response.data;
                 if (response.length) {
-                    console.log('----ehrdetail-------')
-                    console.log(response);
                     setEHRsDetail(response);
                 }
             } catch (e) {
@@ -84,14 +82,11 @@ export default function ViewEHRs(props) {
             };
             await axios.post(ADDRESS + `fetchFileFromDatabase`, fileSchema, {responseType: "blob"})
                 .then(res => {
-                    console.log(String(res));
-                    console.log('response above')
-                    imageURL = ''
-                    // let url = '/home/tejas/Development/ehr/web-app/server/' + String()
-                    // let url = URL.createObjectURL(res.data);
-                    // console.log(url);
-                    // setOpen(true);
-                    // setImageURL(url);
+                    console.log(res);
+                    let url = URL.createObjectURL(res.data);
+                    console.log(url);
+                    setOpen(true);
+                    setImageURL(url);
                 });
         } catch (e) {
             console.log(e);
@@ -101,15 +96,13 @@ export default function ViewEHRs(props) {
 
     function createTableBody() {
         let rows = [];
-        
         for (let i = 0; i < ehrsDetail.length; i++) {
-            
             rows.push(<TableRow key={i}>
                 <TableCell>{ehrsDetail[i].ehrId}</TableCell>
                 <TableCell>{ehrsDetail[i].time}</TableCell>
                 <TableCell>{localStorage.getItem(ehrsDetail[i].doctorId)}</TableCell>
                 <TableCell>{localStorage.getItem(ehrsDetail[i].hospitalId)}</TableCell>
-                <TableCell align="right"><Button name={i} onClick={() => displayEHR(ehrsDetail[i].document_path)}
+                <TableCell align="right"><Button name={i} onClick={() => displayEHR(ehrsDetail[i])}
                                                  variant="contained"
                                                  component="label"
                                                  fullWidth

@@ -12,6 +12,7 @@ const ccpPath = path.resolve(__dirname, '..', '..', '..', 'Blockchain-Network', 
 router.post('/', async (req, res) => {
     console.log('**********Read Documents**************');
     try {
+        // console.log(JSON.stringify(req));
         let sessionKeyExists = await handler.verifySessionKey(req.body.patientId, req.body.sessionKey);
         if (!sessionKeyExists) {
             res.send("Incorrect");
@@ -52,16 +53,17 @@ router.post('/', async (req, res) => {
                 req.body.assetId = documentArray[i];
                 let response = await contract.submitTransaction('readPatientAssets', JSON.stringify(req.body));
                 response = JSON.parse(response.toString());
-                // console.log('---------response--------');
-                // console.log(response);
-                if (response.record || response.ehrId) {
+                console.log('---------response--------');
+                console.log(response);
+                let documentId = response.ehrId || response.labRecordId || response.medicineReceiptId || response.billId||response.record;
+
+                if (documentId) {
                     let collectionName = response.type + 'Collection';
                     let documentType = response.type;
-                    let documentId = response.ehrId || response.labRecordId || response.medicineReceiptId || response.billId;
                     // console.log(collectionName + " " + documentType + " " + documentId);
                     let documentStorageId = await databaseHandler.getFileDetailsAndDocumentId(response.patientId, documentId, documentType);
-                    // console.log('******storageid****');
-                    // console.log(documentStorageId);
+                    console.log('******storageid****');
+                    console.log(documentStorageId);
                     // console.log(process.cwd());
                     let isCorrect = await databaseHandler.verifyFileExistenceAndHash(documentStorageId, documentType, collectionName);
                     // console.log(isCorrect);

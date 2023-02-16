@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/material": "^5.10.15",
     "axios": "^0.27.2",
     "react": "^16.14.0",
-    "react-bootstrap": "^1.6.6",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.3.3",
     "react-scripts": "^3.4.4",
@@ -14,7 +17,9 @@
     "recharts": "^1.8.5",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "classnames": "^2.2.6",
+    "sass": "^1.49.7"
   },
   "scripts": {
     "start": "react-scripts start",

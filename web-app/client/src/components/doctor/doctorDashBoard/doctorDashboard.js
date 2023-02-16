@@ -153,6 +153,7 @@ export default function DoctorDashBoard() {
             try {
                 let doctorCredentials = JSON.parse(localStorage.getItem('doctorToken'));
                 console.log(doctorCredentials);
+                // if(false){
                 if (!doctorCredentials) {
                     setLogOut(true);
                 } else {

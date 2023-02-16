@@ -5,11 +5,16 @@ import ProductHero from "./ProductHero";
 import ProductValues from "./ProductValues";
 import AppFooter from "./AppFooter";
 
+// import HeaderBanner from "../Homefilesnew/banner"
+// import Header from "../Homefilesnew/header"
+
+
 class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                <AppAppBar/>
+                {/* <Header/> */}
+                {/* <HeaderBanner/>                 */}
                 <ProductHero/>
                 <ProductValues/>
                 <ProductCategories/>
