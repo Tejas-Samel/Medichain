@@ -175,8 +175,8 @@ export default function PatientDashBoard() {
             try {
                 let patientCredentials ="";
                 patientCredentials = JSON.parse(localStorage.getItem('patientToken'));
-                if (false) {
-                    setLogOut(false);
+                if (!patientCredentials) {
+                    setLogOut(true);
                 } else {
                     patientCredentials.type = "Patient";
                     console.log(patientCredentials);
