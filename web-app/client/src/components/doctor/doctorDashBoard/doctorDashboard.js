@@ -20,7 +20,7 @@ import DoctorPersonalInfo from './doctorPersonalInfo';
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
-import {ADDRESS} from "../../genericFiles/constants";
+import { ADDRESS,HEADER_MOBILE,HEADER_DESKTOP } from "../../genericFiles/constants";
 import copyright from '../../genericFiles/copyright';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -41,13 +41,20 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
+        backgroundColor:"#006597",
+        backdropFilter:"blur(10px)",
+        minHeight: HEADER_MOBILE,
+        [theme.breakpoints.up('lg')]: {
+            minHeight: HEADER_DESKTOP,
+            // padding: theme.spacing(0, 8),
+        },
     },
     toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: '0 8px',
+        paddingTop: HEADER_DESKTOP/4,
         ...theme.mixins.toolbar,
     },
     appBar: {
@@ -153,9 +160,8 @@ export default function DoctorDashBoard() {
             try {
                 let doctorCredentials = JSON.parse(localStorage.getItem('doctorToken'));
                 console.log(doctorCredentials);
-                // if(false){
                 if (!doctorCredentials) {
-                    setLogOut(true);
+                    setLogOut(true); //need to change to true ***IMPORTANT***
                 } else {
                     doctorCredentials.type = "Doctor";
                     console.log(doctorCredentials);
@@ -181,6 +187,7 @@ export default function DoctorDashBoard() {
 
     const handleLogOut = async () => {
         console.log("herer");
+        setLoaded(true);
         try {
             let doctorCredentials = JSON.parse(localStorage.getItem('doctorToken'));
             doctorCredentials.id = doctorCredentials.medicalRegistrationNo;
@@ -196,9 +203,11 @@ export default function DoctorDashBoard() {
                 //handle the failure by a error message stating why it failed
             }
         } catch (e) {
-            setLoaded(false);
+            
+            console.log(e);
             //handle the error by giving out a error messeage saying the logOUt failed
         }
+        setLoaded(false);
     };
 
     const handleDrawerOpen = () => {
@@ -331,7 +340,6 @@ export default function DoctorDashBoard() {
 
     return (
         <div className={classes.root} id='mainDiv'>
-            <CssBaseline/>
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
@@ -360,12 +368,14 @@ export default function DoctorDashBoard() {
                     paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
                 }}
                 open={open}
-            >
+        >
+            <div style={{height:HEADER_DESKTOP}}>
                 <div className={classes.toolbarIcon}>
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon/>
                     </IconButton>
                 </div>
+            </div>
                 <Divider/>
                 <List>{mainListItems}</List>
                 <Divider/>

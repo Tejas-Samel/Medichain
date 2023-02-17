@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Title from "../../genericFiles/Title";
 import TextField from "@material-ui/core/TextField";
@@ -9,8 +8,6 @@ import Container from "@material-ui/core/Container";
 import { createTheme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
-
-
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import ContactPhoneIcon from "@material-ui/icons/Phone";
 import HomeIcon from '@material-ui/icons/Home';
@@ -18,10 +15,6 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import WcIcon from '@material-ui/icons/Wc';
 // import BloodtypeIcon from '@material-ui/icons/';
-
-
-
-
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
@@ -135,10 +128,10 @@ export default function PatientPersonalInfo(props) {
     <React.Fragment>
       <div style={{ borderRadius: "20px", margin: "1%" }}>
         <Title>
-          {updatedData.firstName}  {updatedData.lastName}
+          {updatedData.firstName} {updatedData.lastName}
         </Title>
       </div>
-
+      
 
       <div style={{ borderRadius: "20px" }} >
 
