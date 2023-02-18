@@ -148,7 +148,7 @@ export default function PharmacyDashboard() {
           localStorage.getItem("pharmacyToken")
         );
         console.log(pharmacyCredentials);
-        if (!pharmacyCredentials) {
+        if (!pharmacyCredentials) { //change to pharmacyCredentials
           setLogOut(true);
         } else {
           pharmacyCredentials.type = "Pharmacy";

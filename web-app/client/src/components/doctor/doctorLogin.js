@@ -242,7 +242,7 @@ class doctorLogin extends Component {
 
                   <form style={{ width: "23rem" }} noValidate onSubmit={this.submitForm}>
 
-                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Log in</h3>
+                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Doctor's Log in</h3>
                     {ifalert ? (<Alert variant ="danger">  {this.state.alertHeading} {this.state.alertData} </Alert>) : (<></>)}
                     {this.state.errors.userName ? (<Alert variant="danger">{this.state.errors.userName}</Alert>) : (<></>)}
                     {this.state.errors.medicalRegistrationNo ? (<Alert variant="danger">{this.state.errors.medicalRegistrationNo}</Alert>) : (<></>)}
@@ -284,7 +284,7 @@ class doctorLogin extends Component {
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
                     <p>Don't have an account? <a href="/registerDoctor" variant="body2">
-                      Register here</a></p>
+                      Register here</a> <a href="/" variant="body2"> Home Page</a></p>
 
                   </form>
 

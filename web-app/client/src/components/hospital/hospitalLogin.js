@@ -270,7 +270,7 @@ class hospitalLogin extends Component {
 
                   <form style={{ width: "23rem" }} noValidate onSubmit={this.submitForm}>
 
-                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Log in</h3>
+                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Hosptial Log In</h3>
                     {ifalert ? (<Alert variant ="danger">  {this.state.alertHeading} {this.state.alertData} </Alert>) : (<></>)}
                     {this.state.errors.userName ? (<Alert variant="danger">{this.state.errors.userName}</Alert>) : (<></>)}
                     {this.state.errors.registrationId ? (<Alert variant="danger">{this.state.errors.registrationId}</Alert>) : (<></>)}

@@ -155,9 +155,6 @@ export default function PatientPersonalInfo(props) {
                   </Typography>
 
                 </CardContent>
-
-
-
               </Card>
             </Grid>
 

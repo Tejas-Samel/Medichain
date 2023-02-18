@@ -322,7 +322,11 @@ export default function DoctorPersonalInfo(props) {
       </Typography>
 
       <div align="center" style={{ margin: "25px" }}>
-      <Button color="primary" variant="contained" onClick={manageUpdateForm}>
+      <Button type="submit"
+                  variant="contained"
+                  color="primary"
+                  style={submit}
+                  onClick={manageUpdateForm}>
             Update Info
       </Button>
       </div>
