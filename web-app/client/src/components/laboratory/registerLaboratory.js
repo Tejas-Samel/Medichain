@@ -367,7 +367,7 @@ class registerLaboratory extends Component {
                     {ifalert ? (<Alert variant ="danger">  {this.state.alertHeading} {this.state.alertData} </Alert>) : (<></>)}
                     {this.state.errors.hospitals ? (<Alert variant="danger">{this.state.errors.hospitals}</Alert>) : (<></>)}
                     {this.state.errors.name ? (<Alert variant="danger">{this.state.errors.name}</Alert>) : (<></>)}
-                    {this.state.errors.address ? (<Alert variant="danger">{this.state.errors.laboratoryType}</Alert>) : (<></>)}
+                    {this.state.errors.laboratoryType ? (<Alert variant="danger">{this.state.errors.laboratoryType}</Alert>) : (<></>)}
                     {this.state.errors.userName ? (<Alert variant="danger">{this.state.errors.userName}</Alert>) : (<></>)}
                     {this.state.errors.password ? (<Alert variant="danger">{this.state.errors.password}</Alert>) : (<></>)}
                     {this.state.errors.phone ? (<Alert variant="danger">{this.state.errors.phone}</Alert>) : (<></>)}
