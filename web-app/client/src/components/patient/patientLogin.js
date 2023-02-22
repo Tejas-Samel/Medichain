@@ -134,7 +134,7 @@ class patientLogin extends Component {
                 <CssBaseline />
                 <div className="px-5 ms-xl-4">
                   <i className="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{ color: "#709085" }}></i>
-                  <span className="h1 fw-bold mb-auto d-flex justify-content-center">MediChain</span>
+                  <span className="h1 fw-bold mb-auto d-flex justify-content-start">MediChain</span>
                 </div>
 
 
@@ -142,7 +142,7 @@ class patientLogin extends Component {
 
                   <form style={{ width: "23rem" }} noValidate onSubmit={this.submitForm}>
 
-                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Log in</h3>
+                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Patient Log in</h3>
                     {ifalert ? (
                       <Alert> {this.state.alertData} </Alert>
                     ) : (<br />)}
@@ -170,7 +170,7 @@ class patientLogin extends Component {
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
                     <p>Don't have an account? <a href="/registerPatient" variant="body2">
-                      Register here</a></p>
+                      Register here</a><a href="/" variant="body2">Homepage</a></p>
 
                   </form>
 
@@ -178,7 +178,7 @@ class patientLogin extends Component {
 
               </div>
               <div className="col-sm-6 px-0 d-none d-sm-block" >
-                <img src="https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <img src="https://images.unsplash.com/flagged/photo-1578535689084-b804a326a840?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGF0aWVudHxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60"
                   alt="Login image" className="w-100 vh-100" style={{ objectFit: "cover", objectPosition: "left", borderRadius: "25px" }} />
               </div>
             </div>
