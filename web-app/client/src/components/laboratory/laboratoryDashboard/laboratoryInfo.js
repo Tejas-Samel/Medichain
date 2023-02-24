@@ -8,11 +8,18 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { createTheme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import ContactPhoneIcon from "@material-ui/icons/Phone";
+import HomeIcon from '@material-ui/icons/Home';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
 import { ADDRESS } from "../../genericFiles/constants";
 import SpinnerDialog from "../../genericFiles/SpinnerDialog";
+import { Card, CardContent, CardHeader } from "@material-ui/core";
+import { alpha, styled } from '@mui/material/styles';
 
 const theme = createTheme();
 const avatar = {
@@ -32,6 +39,34 @@ const form = {
 const submit = {
   margin: theme.spacing(3, 0, 2),
 };
+
+const cardCss = {
+  minWidth: 200,
+  height: 125,
+  paddingTop: 10,
+  paddingBottom: 60,
+  boxShadow: 0,
+  boxSizing: "border-box",
+  borderRadius: 12,
+  backdropFilter: "blur(10px)",
+  backgroundColor: "#D1E9FC",
+  boxShadow: 0,
+  fontSize: "1rem",
+  color: " rgb(6, 27, 100)",
+}
+const StyledIcon = styled('div')(({ theme }) => ({
+  margin: 'auto',
+  display: 'flex',
+  borderRadius: '50%',
+  alignItems: 'center',
+  width: theme.spacing(5),
+  height: theme.spacing(5),
+  justifyContent: 'center',
+  color: "rgb(16, 57, 150)",
+  backgroundImage: "linear-gradient(135deg, rgba(16, 57, 150, 0) 0%, rgba(16, 57, 150, 0.24) 100%)",
+  // marginBottom: theme.spacing(3),
+}));
+
 
 export default function LaboratoryInfo(props) {
   const [updatedData, setUpdatedData] = React.useState(JSON.parse(props.data));
@@ -82,13 +117,81 @@ export default function LaboratoryInfo(props) {
     <React.Fragment>
       <Title>{updatedData.laboratoryType + " Laboratory"}</Title>
       <Typography component="p" variant="h6" align="center">
-        UserName : {updatedData.userName}
+
+      <Grid container spacing={4}>
+      <Grid item xs={12} sm={6} md={4}>
+              <Card style={cardCss}>
+                <CardContent>
+                  <Typography component={'span'}>
+                    <StyledIcon>
+                      <AccountBoxIcon />
+                    </StyledIcon>
+                    UserName
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} >
+                    {updatedData.userName}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Card style={cardCss}>
+                <CardContent>
+                  <Typography component={'span'}>
+                    <StyledIcon>
+                      <ContactPhoneIcon />
+                    </StyledIcon>
+                    Phone
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} >
+                    {updatedData.phone}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+              <Card style={cardCss}>
+                <CardContent>
+                  <Typography component={'span'}>
+                    <StyledIcon>
+                      <HomeIcon />
+                    </StyledIcon>
+                    Hospital
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} >
+                    {updatedData.hospitalId}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+              <Card style={cardCss}>
+                <CardContent>
+                  <Typography component={'span'}>
+                    <StyledIcon>
+                      <AccountBoxIcon />
+                    </StyledIcon>
+                    Registration ID
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} >
+                    {updatedData.registrationId}
+                  </Typography>
+                </CardContent>
+              </Card>
+      </Grid>
+      </Grid>
+
+
+        {/* UserName : {updatedData.userName}
         <br />
         Phone : {updatedData.phone}
         <br />
         Hospital : {updatedData.hospitalId}
         <br />
-        RegistrationId : {updatedData.registrationId}
+        RegistrationId : {updatedData.registrationId} */}
       </Typography>
       <div align="center">
         <Link color="primary" onClick={manageUpdateForm}>
