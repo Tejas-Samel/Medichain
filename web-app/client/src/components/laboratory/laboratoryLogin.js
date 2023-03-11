@@ -179,7 +179,7 @@ class laboratoryLogin extends Component {
 
                   <form style={{ width: "23rem" }} noValidate onSubmit={this.submitForm}>
 
-                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Log in</h3>
+                    <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Lab Login</h3>
                     {ifalert ? (
                       <Alert> {this.state.alertData} </Alert>
                     ) : (<br />)}
@@ -224,8 +224,8 @@ class laboratoryLogin extends Component {
                     </div>
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
-                    <p>Don't have an account? <a href="/registerPatient" variant="body2">
-                      Register here</a></p>
+                    <p>Don't have an account? <a href="/registerLaboratory" variant="body2">
+                      Register here</a><a href="/registerLaboratory" variant="body2">Homepage</a></p>
 
                   </form>
 
@@ -233,7 +233,7 @@ class laboratoryLogin extends Component {
 
               </div>
               <div className="col-sm-6 px-0 d-none d-sm-block">
-                <img src="https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <img src="https://images.pexels.com/photos/5726706/pexels-photo-5726706.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Login image" className="w-100 vh-100" style={{ objectFit: "cover", objectPosition: "left" }} />
               </div>
             </div>
