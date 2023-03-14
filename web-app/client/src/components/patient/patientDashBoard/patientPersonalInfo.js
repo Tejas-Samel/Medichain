@@ -89,6 +89,7 @@ const StyledIcon = styled('div')(({ theme }) => ({
 export default function PatientPersonalInfo(props) {
   const [updatedData, setUpdatedData] = React.useState(JSON.parse(props.data));
   const [loaded, setLoaded] = React.useState(false);
+
   var patient = updatedData;
   patient.password = "";
   patient.id = patient.userName;

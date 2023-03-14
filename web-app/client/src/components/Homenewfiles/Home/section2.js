@@ -12,6 +12,8 @@ import hospital from "./assets/loginicons/hospital.png";
 import pharmacy from "./assets/loginicons/pharmacy.png";
 import laboratory from "./assets/loginicons/laboratory.png";
 import research from "./assets/loginicons/research.png";
+import insurance from "./assets/loginicons/insurance.png";
+
 
 
 
@@ -22,8 +24,8 @@ class Sectiontwo extends Component {
             <section id="features" className="feature-section pt-100 pb-120">
 
                 <div className="container bg-light">
-                    <div className="row justify-content-center ">
-                        <div className="col-lg-4 col-md-8 col-sm-10   border-end border-bottom border-top">
+                    <div className="row justify-content-center border-bottom border-top">
+                        <div className="col-lg-3 col-md-8 col-sm-10   border-end">
                             <div className="single-feature ">
                                 <div className="icon">
                                     <img src={patient} />
@@ -38,7 +40,7 @@ class Sectiontwo extends Component {
                             </div>
                         </div>
                         
-                        <div className="col-lg-4 col-md-8 col-sm-10 border-end border-bottom border-top">
+                        <div className="col-lg-3 col-md-8 col-sm-10 border-end ">
                             <div className="single-feature">
                                 <div className="icon">
                                     <img src={doctor} />
@@ -52,7 +54,7 @@ class Sectiontwo extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-md-8 col-sm-10 border-bottom border-top">
+                        <div className="col-lg-3 col-md-8 col-sm-10 border-end">
                             <div className="single-feature">
                                 <div className="icon">
                                     <img src={hospital} />
@@ -66,9 +68,7 @@ class Sectiontwo extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4 col-md-8 col-sm-10 border-end border-bottom border-top">
+                        <div className="col-lg-3 col-md-8 col-sm-10 ">
                             <div className="single-feature">
                                 <div className="icon">
                                     <img src={pharmacy} />
@@ -82,7 +82,11 @@ class Sectiontwo extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-md-8 col-sm-10 border-end border-bottom border-top">
+                    </div>
+                    
+                    <div className="row justify-content-center">
+                        
+                        <div className="col-lg-3 col-md-8 col-sm-10 border-end border-bottom ">
                             <div className="single-feature">
                                 <div className="icon">
                                     <img src={laboratory} />
@@ -96,7 +100,7 @@ class Sectiontwo extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-md-8 col-sm-10 border-bottom border-top">
+                        <div className="col-lg-3 col-md-8 col-sm-10 border-end border-bottom ">
                             <div className="single-feature">
                                 <div className="icon">
                                     <img src={research} />
@@ -110,6 +114,22 @@ class Sectiontwo extends Component {
                                 </div>
                             </div>
                         </div>
+
+                        <div className="col-lg-3 col-md-8 col-sm-10  border-bottom ">
+                            <div className="single-feature">
+                                <div className="icon">
+                                    <img src={insurance} />
+                                </div>
+                                <div className="content ">
+                                    <Typography variant='h4'>Insurance</Typography>
+                                    <Stack spacing={2} direction="row" className='justify-content-center mt-3'>
+                                    <Button variant="contained" href='/insuranceLogin'>login</Button>
+                                    <Button variant="outlined" href='/registerInsurance' >signup</Button>
+                                    </Stack>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>

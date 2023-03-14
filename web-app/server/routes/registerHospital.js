@@ -60,7 +60,7 @@ router.post('/', async (req, res) => {
 
         let response = await registerInLedger(req);
 
-        console.log(response.length + " hey");
+        // console.log(response.length + " hey");
         let registeredUser = await databaseHandler.registerNewUser(req.body.registrationId, req.body.name, 'Hospital');
         res.send("Correct");
 

@@ -15,9 +15,12 @@ router.post('/', async (req, res) => {
         if (!sessionKeyExists) {
             res.send("Incorrect");
         } else {
-            const walletPath = path.join(process.cwd(), '../wallet');
-            const wallet = new FileSystemWallet(walletPath);
+            console.log("---------Emergency--------------");
 
+            console.log(req.body);
+
+            const walletPath = path.join(process.cwd(), '../../wallet');
+            const wallet = new FileSystemWallet(walletPath);
             // Create a new gateway for connecting to our peer node.
             const gateway = new Gateway();
             await gateway.connect(ccpPath, {
@@ -34,6 +37,8 @@ router.post('/', async (req, res) => {
 
             // Submit the specified transaction.
             let response = await contract.submitTransaction('addEmergencyContact', JSON.stringify(req.body));
+            
+
             response = JSON.stringify(response.toString());
             console.log(response);
 

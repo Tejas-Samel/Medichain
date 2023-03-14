@@ -34,7 +34,7 @@ var revokeAccess = require('./routes/revokeAccess');
 var updateAsset = require('./routes/updateAsset');
 var verifyPassword = require('./routes/verifyPassword');
 var getGenericData = require('./routes/getGenericData');
-
+var emergencyaccess = require('./routes/emergencyAccess');
 
 var app = express();
 const cors = require('cors');
@@ -79,6 +79,7 @@ app.use('/requestAccess', requestAccess);
 app.use('/revokeAccess', revokeAccess);
 app.use('/updateAsset', updateAsset);
 app.use('/verifyPassword', verifyPassword);
+app.use('/emergencyaccess',emergencyaccess);
 app.use(express.static(__dirname+'/uploads'));
 
 

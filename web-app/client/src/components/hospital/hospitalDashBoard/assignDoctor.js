@@ -133,7 +133,7 @@ export default function AssignDoctor(props) {
   };
 
   function createAppointmentMenuItems() {
-    console.log("hert");
+   
     console.log(appointments);
     let items = [];
     for (let i = 0; i < appointments.length; i++) {
@@ -149,13 +149,13 @@ export default function AssignDoctor(props) {
   }
 
   function createDoctorMenuItems() {
-    console.log("hert");
+
     console.log(hospital.doctors);
     let items = [];
     for (let i = 0; i < hospital.doctors.length; i++) {
       items.push(
         <MenuItem key={i} value={hospital.doctors[i]}>
-          {localStorage.getItem(hospital.doctors[i])} => {hospital.doctors[i]}{" "}
+          {localStorage.getItem(hospital.doctors[i])}  {hospital.doctors[i]}{" "}
         </MenuItem>
       );
       //here I will be creating my options dynamically based on

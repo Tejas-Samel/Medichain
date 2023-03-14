@@ -40,7 +40,7 @@ import HospitalAssets from "./hospitalAssets";
 import GenerateBill from "./generateBill";
 import ViewBills from "./viewBill";
 
-import ViewEHRs from "../../patient/patientDashBoard/viewEHRs";
+import ViewEHRs from "./viewEHRs";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -336,10 +336,10 @@ export default function HospitalDashBoard() {
     } else if (viewEHRsDisplay) {
         var viewEHRs = (
             <Paper className={fixedHeightPaper} style={{ height: '360' }}>
-                {/* <ViewEHRs data={JSON.stringify(patientData)} /> */}
+                <ViewEHRs data={JSON.stringify(hospitalData)} />
             </Paper>
-        );}
-        else if (checkAssetDisplay) {
+        );
+    } else if (checkAssetDisplay) {
         console.log("alns");
         var checkAsset = (
             <Paper className={fixedHeightPaper} style={{height: '360'}}>
@@ -406,6 +406,7 @@ export default function HospitalDashBoard() {
     const secondaryListItems = (
         <div>
             <ListSubheader inset>Saved reports</ListSubheader>
+            
             <ListItem button onClick={visibilityHandlerViewBills}>
                 <ListItemIcon>
                     <AssignmentIcon/>
@@ -418,11 +419,12 @@ export default function HospitalDashBoard() {
                 </ListItemIcon>
                 <ListItemText primary="View Documents"/>
             </ListItem>
+            <Divider/>
             <ListItem button onClick={visibilityHandlerViewEHRs}>
                 <ListItemIcon>
                     <AssignmentIcon/>
                 </ListItemIcon>
-                <ListItemText primary="View EHRs"/>
+                <ListItemText primary="Emergency Access"/>
             </ListItem>
         </div>
     );
@@ -502,6 +504,9 @@ export default function HospitalDashBoard() {
                         </Grid>
                         <Grid item xs={12} style={{display: 'none'}} id="viewBills">
                             {viewBills}
+                        </Grid>
+                        <Grid item xs={12} style={{display: 'none'}} id="viewEHRs">
+                            {viewEHRs}
                         </Grid>
                     </Grid>
                     <Box pt={4}>
