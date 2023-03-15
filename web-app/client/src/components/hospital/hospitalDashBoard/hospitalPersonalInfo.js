@@ -50,7 +50,7 @@ const cardCss = {
   boxSizing: "border-box",
   borderRadius: 12,
   backdropFilter: "blur(10px)",
-  backgroundColor: "#D1E9FC",
+  backgroundColor: "#a7ffeb",
   boxShadow: 0,
   fontSize: "1rem",
   color: " rgb(6, 27, 100)",

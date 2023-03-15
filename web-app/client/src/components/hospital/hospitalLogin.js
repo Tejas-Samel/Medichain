@@ -131,7 +131,7 @@ class hospitalLogin extends Component {
         } else {
           this.setState({
             alertShow: true,
-            alertHeading: "SigIn Error",
+            alertHeading: "SignIn Error",
             alertData: response.data,
           });
         }
@@ -287,7 +287,7 @@ class hospitalLogin extends Component {
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="registrationId">Registration ID</label>
 
-                      <input name="medicalRegistrationNo" defaultValue={this.state.registrationId}
+                      <input name="registrationId" defaultValue={this.state.registrationId}
                         label="Registration ID" className="form-control form-control-lg"
                         onChange={this.handleChange}
                         helperText={this.state.errors.medicalRegistrationNo}

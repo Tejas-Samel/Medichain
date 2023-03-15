@@ -385,8 +385,21 @@ class registerLaboratory extends Component {
                             <div className="col-md-6 mb-4">
                               <div className="form-outline mb-4">
                                 <label className="form-label" htmlFor="hospital">Hospital</label>
-                                <input required type="text" id="hospital" name="hospital" defaultValue={this.state.hospitalId || ""} helperText={this.state.errors.hospitalId}
-                                  onChange={this.handleChange} className="form-control form-control-lg" />
+                                <TextField
+                    variant="standard"
+                    required
+                    fullWidth
+                    select
+                    id="select"
+                    // label="hospital"
+                    name="hospitalId"
+                    autoComplete="hospital"
+                    defaultValue={this.state.hospitalId || ""}
+                    onChange={this.handleChange}
+                    helperText={this.state.errors.hospitalId}
+                  >
+                    {this.createMenuItems()}
+                  </TextField>
                               </div>
                             </div>
                     <div className="col-md-6 mb-4">
@@ -436,7 +449,7 @@ class registerLaboratory extends Component {
                     </div>
 
                     <div className="pt-1 mb-4">
-                      <Button variant="contained" color="primary" type="submit" >Login</Button>
+                      <Button variant="contained" color="primary" type="submit" >Register</Button>
                     </div>
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>

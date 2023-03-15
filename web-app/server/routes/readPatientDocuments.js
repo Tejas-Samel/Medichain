@@ -12,14 +12,19 @@ const ccpPath = path.resolve(__dirname, '..', '..', '..', 'Blockchain-Network', 
 router.post('/', async (req, res) => {
     console.log('**********Read Documents**************');
     try {
-        // console.log(JSON.stringify(req));
-        let sessionKeyExists = await handler.verifySessionKey(req.body.patientId, req.body.sessionKey);
+        // console.log("hospitalId"in req.body);
+        let sessionKeyExists =false;
+        if(req.body['express']){
+        sessionKeyExists = await handler.verifySessionKey(req.body.hospitalId, req.body.sessionKey);
+
+        }else{
+        sessionKeyExists = await handler.verifySessionKey(req.body.patientId, req.body.sessionKey);
+        }
         if (!sessionKeyExists) {
             res.send("Incorrect");
         } else {
             const walletPath = path.join(process.cwd(), '../wallet');
             const wallet = new FileSystemWallet(walletPath);
-
             // Create a new gateway for connecting to our peer node.
             const gateway = new Gateway();
             await gateway.connect(ccpPath, {
@@ -27,12 +32,18 @@ router.post('/', async (req, res) => {
                 identity: req.body.patientId,
                 discovery: {enabled: true, asLocalhost: true}
             });
-
+            // console.log(gateway);
             // Get the network (channel) our contract is deployed to.
             const network = await gateway.getNetwork('mychannel');
 
             // Get the contract from the network.
             const contract = network.getContract('EHR');
+            
+            if(req.body['express']){
+            let documentStorageId = await databaseHandler.EmergencyAccess(req.body.hospitalId,req.body.patientId);
+            // console.log(documentStorageId);
+
+            }
 
             /*
             get the type of document in the form of an array

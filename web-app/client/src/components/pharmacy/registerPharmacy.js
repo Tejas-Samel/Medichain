@@ -133,7 +133,7 @@ class registerPharmacy extends Component {
       );
       console.log(isRegistrationIdTaken);
       if (isRegistrationIdTaken !== null) {
-        errors["registrationId"] = "*registrationId already in use";
+        errors["registrationId"] = "*RegistrationId already in use";
       }
     }
 
@@ -159,7 +159,7 @@ class registerPharmacy extends Component {
           this.setState({
             alertShow: true,
             alertData: response,
-            alertHeading: "SigUp Error",
+            alertHeading: "SignUp Error",
           });
         }
       } catch (e) {
@@ -394,7 +394,7 @@ class registerPharmacy extends Component {
                     </div>
 
                     <div className="pt-1 mb-4">
-                      <Button variant="contained" color="primary" type="submit" >Login</Button>
+                      <Button variant="contained" color="primary" type="submit" >Register</Button>
                     </div>
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>

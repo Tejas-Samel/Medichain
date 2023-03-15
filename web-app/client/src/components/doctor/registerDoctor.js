@@ -609,7 +609,7 @@ class registerDoctor extends Component {
                     </div>
 
                     <div className="pt-1 mb-4">
-                      <Button variant="contained" color="primary" type="submit" >Login</Button>
+                      <Button variant="contained" color="primary" type="submit" >Register</Button>
                     </div>
 
                     <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>

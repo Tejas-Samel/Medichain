@@ -54,7 +54,7 @@ class patientLogin extends Component {
       errors["password"] = "*Please Enter the password";
     }
     this.setState({ errors: errors });
-    console.log("errors");
+    
 
     console.log(errors);
     this.state.errors = errors;

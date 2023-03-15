@@ -118,6 +118,7 @@ async function registerNewUser(id, name, type) {
             type: type,
             name: name,
         };
+        console.log('------------registerNewUser-----------------')
         console.log(userSchema);
         client = await mongo.connect(url);
         let result = await client.db('EHR').collection('registeredUserList').insertOne(userSchema);
@@ -166,6 +167,46 @@ async function fetchUserByUserName(userName) {
     }
 }
 
+async function EmergencyAccess(hospitalId,userName){
+    try{
+    const mongo = require('mongodb').MongoClient;
+    const url = 'mongodb://127.0.0.1:27017';
+    let client;
+    client = await mongo.connect(url);
+    let data={
+        "hospitalId":hospitalId,
+        "time": String(Date().valueOf()),
+        "emergencyaccess":true,
+    }
+    let result = await client.db('EHR').collection(String(userName)).insertOne(data);
+    await client.close();
+    return result;
+    }catch(e){
+        
+        console.log(e);
+        return "ERROR"
+    }
+}
+
+async function EmergencyAccessQuery(userName){
+    try {
+        const mongo = require('mongodb').MongoClient;
+        const url = 'mongodb://127.0.0.1:27017';
+        let client;
+        client = await mongo.connect(url);
+        let result = await client.db('EHR').collection(String(userName)).find({"emergencyaccess":true}).sort({"time":-1}).toArray();
+        return result;
+        
+    } catch (error) {
+        console.log(e);
+        return "ERROR"
+    }
+}
+
+
+
+
+
 module.exports = {
     updateDocumentIntoDatabase,
     removeDocumentFromDatabase,
@@ -173,5 +214,7 @@ module.exports = {
     getFileDetailsAndDocumentId,
     fetchUsersByType,
     fetchUserByUserName,
-    registerNewUser
+    registerNewUser,
+    EmergencyAccess,
+    EmergencyAccessQuery,
 };
