@@ -18,6 +18,7 @@ Medichain is an innovative Electronic Health Record (EHR) system designed to sec
   - [Configuration](#configuration)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
+- [Images](#images)
 
 ## Introduction
 
@@ -52,6 +53,7 @@ Before you begin, ensure you have the following software installed:
 
 - Node.js (with npm)
 - Docker
+- Docker Compose
 - MongoDB
 
 ### Installation
@@ -75,7 +77,13 @@ Before you begin, ensure you have the following software installed:
 
 4. Set up MongoDB database and ensure it's running.
 
-5. Start the blockchain network using Hyperledger Fabric. (Instructions to be added)
+5. Install blockchain network Hyperledger Fabric from this website.```https://hyperledger-fabric.readthedocs.io/en/release-2.5/getting_started.html ```
+6. Start blockchain network by following instruction:
+    ``` cd Blockchain-Network
+      install all dependencies from
+          fabcar -> javascript
+          chaincode -> EHR  
+   ```
 
 ### Configuration
 
@@ -87,19 +95,24 @@ Before you begin, ensure you have the following software installed:
 
 ## Usage
 
-1. Start the frontend:
+1. Start Blockchain Network:
+   ```
+   cd Blockchain-Network/fabcar
+   ./startFabric.sh
+   ``` 
+2.  Start the frontend:
    ```bash
    cd client
    npm start
    ```
 
-2. Start the backend:
+3. Start the backend:
    ```bash
    cd ../web-app/server
    npm start
    ```
 
-3. Access the Medichain application in your web browser.
+4. Access the Medichain application in your web browser.
 
 ## Technologies Used
 
@@ -107,5 +120,15 @@ Before you begin, ensure you have the following software installed:
 - Backend: Express.js, Node.js
 - Blockchain: Hyperledger Fabric
 - Database: MongoDB
+
+## Images
+
+<img src="images/medical record view.jpeg" width="400" />
+<img src="images/img01.jpeg" width="400" />
+<img src="images/img02.jpeg" width="400" />
+<img src="images/img03.jpeg" width="400" />
+<img src="images/img04.jpeg" width="400" />
+<img src="images/img05.jpeg" width="400" />
+
 
 
